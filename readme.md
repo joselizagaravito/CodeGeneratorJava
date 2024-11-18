@@ -37,8 +37,9 @@ plaintext
 
 Copiar código
 
+Copiar código
+```js
 src/
-
 ├── main/
 │   ├── java/
 │   │   ├── com.lizatechnology.codegenerator/
@@ -51,7 +52,7 @@ src/
 │   │   ├── templates/               # Plantillas FreeMarker.
 │   │   └── type\_imports.txt         # Persistencia de importaciones dinámicas.
 └── test/                            # Pruebas unitarias e integración.
------
+```
 **🛠️ Configuración del Entorno**
 
 1. **Clona este repositorio:**
@@ -78,46 +79,46 @@ Copiar código
 POST /api/code-generator/generate
 
 **Cuerpo de la solicitud:**
-json
-Copiar código
+
+```js
 {
-`  `"entities": [
-`    `{
-`      `"name": "Category",
-`      `"fields": [
-`        `{
-`          `"name": "id",
-`          `"type": "Long",
-`          `"annotations": [
-`            `"@Id",
-`            `"@GeneratedValue(strategy = GenerationType.IDENTITY)"
-`          `]
-`        `},
-`        `{
-`          `"name": "name",
-`          `"type": "String",
-`          `"annotations": [
-`            `"@Column(nullable = false, unique = true)"
-`          `]
-`        `},
-`        `{
-`          `"name": "products",
-`          `"type": "List<Product>",
-`          `"annotations": [
-`            `"@OneToMany(mappedBy = \"category\", cascade = CascadeType.ALL, orphanRemoval = true)"
-`          `]
-`        `}
-`      `]
-`    `}
-`  `]
+  "entities": [
+    {
+      "name": "Category",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "annotations": [
+            "@Id",
+            "@GeneratedValue(strategy = GenerationType.IDENTITY)"
+          ]
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "annotations": [
+            "@Column(nullable = false, unique = true)"
+          ]
+        },
+        {
+          "name": "products",
+          "type": "List<Product>",
+          "annotations": [
+            "@OneToMany(mappedBy = \"category\", cascade = CascadeType.ALL, orphanRemoval = true)"
+          ]
+        }
+      ]
+    }
+  ]
 }
------
+```
 **💻 Código Generado**
 
 **Clase Category:**
 
 java
-Copiar código
+```js
 package com.lizatechnology.generated.entities;
 import java.util.List;
 import jakarta.persistence.\*;
@@ -128,15 +129,15 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category {
-`    `@Id
-`    `@GeneratedValue(strategy = GenerationType.IDENTITY)
-`    `private Long id;
-`    `@Column(nullable = false, unique = true)
-`    `private String name;
-`    `@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-`    `private List<Product> products;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, unique = true)
+    private String name;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products;
 }
------
+```
 **🌟 Plantillas Personalizables**
 
 Las plantillas están ubicadas en src/main/resources/templates.
@@ -144,7 +145,7 @@ Las plantillas están ubicadas en src/main/resources/templates.
 **Plantilla de Entidad (entity.ftl):**
 
 ftl
-Copiar código
+```js
 package com.lizatechnology.generated.entities;
 <#if imports?? && (imports?size > 0)>
 <#list imports as import>
@@ -159,15 +160,16 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ${entityName} {
-`    `<#list fields as field>
-`    `<#if field.annotations??>
-`    `<#list field.annotations as annotation>
-`    `${annotation}
-`    `</#list>
-`    `</#if>
-`    `private ${field.type} ${field.name};
-`    `</#list>
+    <#list fields as field>
+    <#if field.annotations??>
+    <#list field.annotations as annotation>
+    ${annotation}
+    </#list>
+    </#if>
+    private ${field.type} ${field.name};
+    </#list>
 }
+```
 -----
 **🔄 Mejoras Futuras**
 
@@ -183,16 +185,15 @@ public class ${entityName} {
 1. Haz un **fork** del repositorio.
 1. Crea una nueva rama para tus cambios:
 
-   bash
-   Copiar código
+   ```js
    git checkout -b mi-feature
+   ```
 1. Sube tus cambios:
-   bash
-   Copiar código
+   ```js
    git add .
    git commit -m "Nueva funcionalidad"
    git push origin mi-feature
-
+   ```
 1. Abre un **pull request** y describe tus cambios.
 -----
 **📜 Licencia**
@@ -204,6 +205,6 @@ Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
 
 Para consultas, problemas o sugerencias, contáctanos en:
 
-- **Email:** tu-email@dominio.com
-- **GitHub:** <https://github.com/tu-usuario>
+- **Email:** joselizagaravito@gmail.com
+- **GitHub:** <https://github.com/joselizagaravito>
 
